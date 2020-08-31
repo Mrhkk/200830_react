@@ -1,7 +1,9 @@
 import axios from "axios";
 import qs from "qs";
 import { apiHost } from "./config";
-// import router from '../../router'
+import memoryUt from "../utils/memoryUt"
+const user = memoryUt.user
+    // import router from '../../router'
 
 // axios.defaults.headers.post["Content-Type"] = "application/json";
 /** --------------------------------添加请求拦截器，在发送请求之前做些什么--------------------------------- */
@@ -41,7 +43,7 @@ class ApiClient {
             let header = {};
             // console.log(params);
 
-            let token1 = sessionStorage.getItem('token')
+            let token1 = user.token
 
             if (!type) {
                 header = {

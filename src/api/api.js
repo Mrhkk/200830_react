@@ -1,5 +1,6 @@
 import apiAxios from "./axios";
 import { message } from 'antd';
+import storageUt from "../utils/storageUt"
 
 class ApiList {
     // -----------------------处理请求结果 start--------------------
@@ -35,8 +36,9 @@ class ApiList {
                 // console.log("错误信息.message", err.message, err);
                 if (err.msg === "not login!" || err.message === "Network Error") {
                     // router.push("/Login");
+                    storageUt.removeUser();
+                    this.props.history.replace("/login");
                 }
-                // vue.$message.error(err.message || err.msg)
                 message.error(err.message || err.msg);;
                 return;
             }
