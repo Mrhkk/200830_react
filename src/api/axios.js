@@ -1,8 +1,9 @@
 import axios from "axios";
 import qs from "qs";
 import { apiHost } from "./config";
-import memoryUt from "../utils/memoryUt"
-const user = memoryUt.user
+import storageUt from "../utils/storageUt"
+const user = storageUt.getUser()
+console.log(user)
     // import router from '../../router'
 
 // axios.defaults.headers.post["Content-Type"] = "application/json";
