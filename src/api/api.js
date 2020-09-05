@@ -36,8 +36,10 @@ class ApiList {
                 // console.log("错误信息.message", err.message, err);
                 if (err.msg === "not login!" || err.message === "Network Error") {
                     // router.push("/Login");
+                    console.log(121313, err.message)
                     storageUt.removeUser();
-                    this.props.history.replace("/login");
+                    window.location.href = '/login';
+                    // this.props.history.replace("/login");
                 }
                 message.error(err.message || err.msg);;
                 return;

@@ -27,7 +27,10 @@ class LeftNav extends Component {
   //       key={item.id}
   //           title={
   //             <span>
-  //               <Icon type={item.icon} />
+  //               <Icon 
+  
+  
+  // type={item.icon} />
   //               <span>{item.title}</span>
   //             </span>
   //           }

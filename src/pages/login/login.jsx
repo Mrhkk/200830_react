@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import { Form, Icon, Input, Button } from "antd";
 import "./login.less";
 import logo from "./imgs/diai.png";
-import Api from "../../api/api"
+// import Api from "../../api/api"
 import memoryUt from "../../utils/memoryUt"
 import storageUt from "../../utils/storageUt"
 class Login extends Component {
@@ -13,7 +13,7 @@ class Login extends Component {
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
         const {username,password} = values
-         let res =await Api.LoginIn(username,password)
+         let res =await React.$Api.LoginIn(username,password)
          if (!res) {
           return;
         }
