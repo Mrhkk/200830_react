@@ -109,6 +109,7 @@ export default class Banner extends Component {
     });
   };
   getBanner = async () => {
+    console.log(this.state.options)
     this.setState({
       loading: true,
     });
@@ -136,6 +137,7 @@ export default class Banner extends Component {
   };
   getPlat = async () => {
     let res = await Api.getPlatformList1();
+    if(!res)return
     let res1 = res.map((item) => {
       let obj = { label: item.value, value: item.key + "&" + item.value };
 
@@ -249,8 +251,8 @@ export default class Banner extends Component {
             onChange={this.handleChange.bind(this)}
             placeholder='请选择排序'
           >
-            <Option value="0">编号升序</Option>
-            <Option value="1">编降排序</Option>
+            <Option value={1}>编号升序</Option>
+            <Option value={2}>编降排序</Option>
           </Select>
         </div>
       </div>

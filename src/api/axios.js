@@ -2,7 +2,6 @@ import axios from "axios";
 import qs from "qs";
 import { apiHost } from "./config";
 import storageUt from "../utils/storageUt"
-import { message } from "antd";
 const user = storageUt.getUser()
     // import router from '../../router'
 
@@ -131,7 +130,7 @@ class ApiClient {
         // 统一判断后端返回的错误码(错误码与后台协商而定)Error: Network Error
         if (res) {
             // console.log("errorState", "数据错误", res);
-            message.error('network Error')
+            // message.error('network Error')
             return res;
         }
     }

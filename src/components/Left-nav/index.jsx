@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Menu, Icon } from "antd";
+import {connect} from 'react-redux'
+import {setHeadTitle} from '../../redux/actions'
 import "./index.less";
 import menuList from "../../config/menuConfig";
 const { SubMenu } = Menu;
@@ -49,9 +51,12 @@ class LeftNav extends Component {
     return menuList.reduce((pre, item) => {
       // 向pre中添加项
       if (!item.subs) {
+        if(item.index===path){
+          this.props.setHeadTitle(item.title)
+        }
         pre.push(
           <Menu.Item key={item.index}>
-            <Link to={item.index}>
+            <Link to={item.index} onClick={()=>this.props.setHeadTitle(item.title)}>
               <Icon type={item.icon} />
               <span>{item.title}</span>
             </Link>
@@ -81,7 +86,7 @@ class LeftNav extends Component {
       return pre;
     }, []);
   };
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.MenuNodes = this.getMenuNodes(menuList);
   }
   render() {
@@ -93,7 +98,7 @@ class LeftNav extends Component {
     return (
       <div className="left-nav">
         <Link to="/" className="left-nav-header">
-          <h1>贝豪活动管理</h1>
+    <h1>{this.props.collapsed?'BAW':'贝豪活动管理'}</h1>
         </Link>
         <Menu mode="inline" theme="dark" selectedKeys={[path]} openKeys={[openKey]}>
           {this.MenuNodes}
@@ -103,4 +108,6 @@ class LeftNav extends Component {
   }
 }
 // withRouter 高阶组件包裹非路由组件返回一个新的组件向非路由组件传递history location match三个属性
-export default withRouter(LeftNav);
+export default connect(
+  state=>({}),{setHeadTitle}
+)(withRouter(LeftNav))

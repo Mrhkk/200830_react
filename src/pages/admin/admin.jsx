@@ -14,16 +14,25 @@ import Group from "../group/group";
 import Home from "../home/home";
 const { Sider ,Content } = Layout;
 export default class Admin extends Component {
+    state={
+      collapsed:false
+    }
+    callback=(collapsed)=>{
+      this.setState({
+        collapsed:!collapsed
+      })
+    }
     render(){
         const user = memoryUt.user
         if(!user||!user.token){
        return <Redirect to='/login'></Redirect>
         }
+        const {collapsed}=this.state
         return(
             <Layout style={{height:'100%'}}>
-            <Sider ><LeftNav></LeftNav></Sider >
+            <Sider collapsed={collapsed}><LeftNav collapsed={collapsed}></LeftNav></Sider >
             <Layout>
-              <Header>Header</Header>
+              <Header collapsed={collapsed} callback={this.callback.bind(this,collapsed)}>Header</Header>
               <Content style={{backgroundColor:'#f8f8f9',padding:'20px 20px 0'}}>
                 <Switch>
                   <Route path='/home' component={Home}/>
